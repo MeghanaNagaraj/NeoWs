@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import axios from "axios";
 import DateListing from "./DateListing";
 
-// const url1 =
-//   "https://api.nasa.gov/neo/rest/v1/feed?start_date=2015-09-07&end_date=2015-09-08&api_key=pK54KJaxWhL7TN8V2CEK79taxNCH8QolYuHzYUnn";
+const url1 =
+  "https://api.nasa.gov/neo/rest/v1/feed?start_date=2015-09-07&end_date=2015-09-08&api_key=pK54KJaxWhL7TN8V2CEK79taxNCH8QolYuHzYUnn";
 
 class DateList extends Component {
   constructor(props) {
@@ -29,13 +29,13 @@ class DateList extends Component {
     var eDate = `${this.state.endDate}`;
     sendToApi(sDate, eDate);
   };
-  // componentDidMount() {
-  //   fetch(url1, { Method: "GET" })
-  //     .then((res) => res.json())
-  //     .then((post) => {
-  //       this.setState({ posts: post });
-  //     });
-  // }
+  componentDidMount() {
+    fetch(url1, { Method: "GET" })
+      .then((res) => res.json())
+      .then((post) => {
+        this.setState({ posts: post });
+      });
+  }
 
   render() {
     const { posts } = this.state;
