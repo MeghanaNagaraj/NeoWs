@@ -10,7 +10,7 @@ const DateListing = (props) => {
       //   .map((item) => {
           return (
             <div className="">
-              <p key="{datalist.close_approach_date}">{datalist.close_approach_date}</p>
+              <p key="{datalist.element_count}">Total number of Asteroids close to Earth between above dates is: {datalist.element_count}</p>
             </div>
           );
         // });

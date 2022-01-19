@@ -11,7 +11,7 @@ class DateList extends Component {
     this.state = {
       posts: "",
       startDate: "",
-      endDate: ""
+      endDate: "",
     };
   }
   handleStartDate = (event) => {
@@ -27,22 +27,31 @@ class DateList extends Component {
   handleSubmit = (event) => {
     var sDate = `${this.state.startDate}`;
     var eDate = `${this.state.endDate}`;
-    sendToApi(sDate, eDate);
+    console.log(sDate,eDate);
+    fetch(
+      `https://api.nasa.gov/neo/rest/v1/feed?start_date=${sDate}&end_date=${eDate}&api_key=pK54KJaxWhL7TN8V2CEK79taxNCH8QolYuHzYUnn`,
+      { Method: "GET" }
+    ).then((res) => res.json())
+    .then((post) => {
+      this.setState({ posts: post });
+    });
+    console.log(posts);
   };
-  componentDidMount() {
-    fetch(url1, { Method: "GET" })
-      .then((res) => res.json())
-      .then((post) => {
-        this.setState({ posts: post });
-      });
-  }
+  // componentDidMount() {
+  //   fetch(url1, { Method: "GET" })
+  //     .then((res) => res.json())
+  //     .then((post) => {
+  //       this.setState({ posts: post });
+  //     });
+  // }
 
   render() {
     const { posts } = this.state;
+    const { lists } = this.state;
     return (
       <div>
         <h1>Enter dates</h1>
-        <form onSubmit={this.handleSubmit}>
+        <form>
           <label>Start date:</label>
           <br />
           <input
@@ -61,28 +70,15 @@ class DateList extends Component {
             onChange={this.handleEndDate}
           />
           <br />
-          <button className="button" type="submit">
+          
+        </form>
+        <button className="button" onClick={this.handleSubmit}>
             Submit
           </button>
-        </form>
-
         <DateListing datalist={this.state.posts} />
+        <DateListing datalist={this.state.lists} />
       </div>
     );
   }
-}
-function sendToApi(sDate, eDate) {
-  console.log(sDate, eDate);
-  fetch(
-    `https://api.nasa.gov/neo/rest/v1/feed?start_date=2015-01-07&end_date=2015-01-08&api_key=pK54KJaxWhL7TN8V2CEK79taxNCH8QolYuHzYUnn`,
-    { Method: "GET" }
-  )
-    .then((res) => {
-      res.json();
-      console.log(res);
-    })
-    .then((post) => {
-      this.setState({ posts: post });
-    });
 }
 export default DateList;

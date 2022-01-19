@@ -27,7 +27,7 @@ class MoreInfo extends Component {
         .then((post) => {
           this.setState({ posts: post });
         });
-        console.log(res);
+        console.log(posts);
   };
   componentDidMount() {
     fetch(url, { Method: "GET" })
@@ -42,7 +42,7 @@ class MoreInfo extends Component {
     return (
       <div>
         <h1>Asteroid Info</h1>
-        <form onSubmit={this.handleSubmit}>
+        <form>
         <label>Enter Asteroid Id:</label>
           <br />
           <input
@@ -52,11 +52,10 @@ class MoreInfo extends Component {
             onChange={this.handleId}
           />
           <br />
-          <button className="button" type="submit">
+        </form>
+        <button className="button" onClick={this.handleSubmit}>
             Submit
           </button>
-        </form>
-        
         <AsteroidInfo datalist={this.state.posts} />
       </div>
     );
