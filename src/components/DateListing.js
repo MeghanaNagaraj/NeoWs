@@ -16,7 +16,7 @@ const DateListing = (props) => {
      }
      
           return (
-            <div className="">
+            <div className="right">
               <p>Total number of Asteroids close to Earth between above dates is: {datalist.element_count}</p>
               <tbody>{rows}</tbody>
             </div>
