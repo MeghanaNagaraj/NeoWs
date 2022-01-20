@@ -43,3 +43,9 @@ label {
 .right{
   padding-right: 40px;
 }
+.planet{
+  position: absolute;
+  top: 0;
+  right: 0;
+  width:350px;
+}
